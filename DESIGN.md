@@ -104,11 +104,15 @@ Git LFS 는 쓰지 않는다. 저장 용량 한도와 설정 관리 부담이 1�
 
 ```text
 ai-reference/
+├── README.md           # 프로젝트 안내서. 영어. AUTO 블록은 자동 생성된다.
+├── README.ko.md        # 프로젝트 안내서. 한국어 번역.
 ├── DESIGN.md           # 이 문서
 ├── CLAUDE.md           # 폴더 규칙과 작업 절차. 100줄 이내.
 ├── index.md            # 카드마다 1줄. Claude 가 가장 먼저 읽는다.
 ├── log.md              # 작업 기록. 줄을 추가만 한다.
 ├── .gitignore          # raw/, site/, .DS_Store 를 제외한다.
+├── .githooks/pre-commit  # 커밋 전에 README 를 다시 만들고 검사한다.
+├── .github/workflows/docs-check.yml  # GitHub 에서 같은 검사를 실행한다.
 ├── raw/                # 원천 폴더. git 제외.
 │   └── 2026-10-26_agentos_delegate-to-claude/
 │       ├── original.html
@@ -130,6 +134,7 @@ ai-reference/
 ├── research/           # 딥리서치 노트와 보고서
 ├── scripts/
 │   ├── html2md.py      # 원천 HTML 을 요약 노트 초안과 이미지로 바꾼다.
+│   ├── update_docs.py  # README 의 AUTO 블록을 만들고 정합성을 검사한다.
 │   ├── build_site.py   # 노트와 카드로 로컬 웹페이지를 만든다.
 │   └── freshness.py    # review_by 가 지난 카드를 나열한다.
 ├── templates/
@@ -522,7 +527,18 @@ X 의 무료 RSS 경로는 2026-09 에 사라졌다. Nitter 와 XCancel 이 모�
 - Boris Cherny 의 2026-10 현재 소속은 확인하지 않았다.
 - 펠릭스 발언의 타임스탬프는 AgentOS 정리 영상 기준이다. 원 인터뷰의 타임스탬프는 아직 찾지 않았다.
 
-## 16. 결정 기록
+## 16. 문서 자동화
+
+README 는 `README.md` 와 `README.ko.md` 2개다. 영어가 원본이고 한국어가 번역이다.
+
+1. `scripts/update_docs.py` 가 두 README 의 AUTO 블록 6개를 저장소 내용으로 다시 쓴다. 블록은 stats, layout, sources, cards, skills, scripts 다.
+2. `.githooks/pre-commit` 이 커밋마다 1번을 실행하고 README 를 stage 한다.
+3. 같은 hook 이 `update_docs.py --check` 를 실행한다. 검사가 실패하면 커밋이 멈춘다.
+4. GitHub Actions `docs-check` 가 push 와 pull request 마다 같은 검사를 실행한다.
+
+검사 항목은 5개다. AUTO 블록의 최신 여부, 두 README 의 머리글 구조, 최상위 항목의 설명 유무, 카드와 `index.md` 의 일치, 스크립트 docstring 의 영어·한국어 줄이다. 서술 부분은 자동으로 만들지 않는다. 설계나 구현 파일만 바뀐 커밋에서 hook 이 확인 알림을 출력한다.
+
+## 17. 결정 기록
 
 | 날짜 | 결정 | 이유 |
 |---|---|---|
@@ -532,3 +548,4 @@ X 의 무료 RSS 경로는 2026-09 에 사라졌다. Nitter 와 XCancel 이 모�
 | 2026-10-29 | 추천에는 기본 프롬프트를 항상 붙인다. | 펠릭스와 Anthropic 문서가 모두 낡은 skill 의 위험을 경고한다. |
 | 2026-10-29 | 검색 서버와 RAG 는 쓰지 않는다. | 원천 100개 규모까지는 index 파일로 충분하다. |
 | 2026-10-29 | Aside 형식은 `/aside` 가 만드는 요청 프롬프트로 통일한다. Aside 사용자 skill 은 보류한다. | 규칙 원본을 저장소 1곳에 둔다. Aside 의 skill 자동 선택은 확인되지 않았다. |
+| 2026-10-29 | README 는 영어 원본과 한국어 번역 2개로 둔다. 숫자, 표, 목록은 `update_docs.py` 가 만든다. pre-commit hook 과 GitHub Actions 가 같은 검사를 실행한다. | 사람이 문서 갱신을 잊어도 구현과 문서가 어긋나지 않게 한다. 머리글 구조 비교로 번역 누락을 잡는다. |

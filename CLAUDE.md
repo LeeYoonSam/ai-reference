@@ -40,3 +40,13 @@ slug 는 `YYYY-MM-DD_<채널>_<주제>` 다. 날짜는 원본 영상의 게시�
 - 커밋은 사용자가 요청할 때만 한다.
 - 작업을 구분 가능한 단위로 나눠 커밋한다. 예: 원천 가져오기 결과, 노트 정리, 카드 추가.
 - 커밋 전에 `git status` 로 `raw/` 파일이 섞이지 않았는지 확인한다.
+
+## 문서
+
+- README.md 와 README.ko.md 의 서술을 고치면, 두 파일을 같은 커밋에서 함께 고친다. 머리글 구조가 다르면 pre-commit 검사가 커밋을 멈추기 때문이다.
+- 설계, 작동 흐름, 설치 방법, skill 동작이 바뀌면, 두 README 의 해당 서술도 함께 고친다.
+- `<!-- AUTO:... -->` 블록 안을 손으로 고치지 않는다. `scripts/update_docs.py` 가 다음 실행에서 덮어쓰기 때문이다.
+- 최상위 폴더나 파일을 더하면, `scripts/update_docs.py` 의 `LAYOUT` 에 영어·한국어 설명을 더한다.
+- 카드 분류 폴더를 더하면, `scripts/update_docs.py` 의 `CATEGORY` 에 이름을 더한다.
+- 새 스크립트의 docstring 은 첫 줄을 영어, 둘째 줄을 한국어로 쓴다.
+- 커밋 전에 `python3 scripts/update_docs.py --check` 가 통과하는지 확인한다.
