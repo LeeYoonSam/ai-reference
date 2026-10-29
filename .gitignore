@@ -1,0 +1,9 @@
+# 원천 폴더: PDF, HTML, docx, 이미지, 자막. 용량이 커서 git 에 넣지 않는다.
+raw/
+# 로컬 보기용 웹페이지. 스크립트로 다시 만든다.
+site/
+# macOS 메타데이터
+.DS_Store
+# Python 캐시
+__pycache__/
+.venv/
