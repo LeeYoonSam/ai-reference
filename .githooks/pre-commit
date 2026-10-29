@@ -1,0 +1,43 @@
+#!/bin/sh
+# pre-commit: README 의 AUTO 블록을 다시 만들고 문서 정합성을 검사한다.
+# Regenerate README AUTO blocks and check docs before every commit.
+# 설치: git config core.hooksPath .githooks
+
+root=$(git rev-parse --show-toplevel) || exit 1
+cd "$root" || exit 1
+
+# Do not auto-stage a README that already has unstaged manual edits.
+# 손으로 고친 뒤 stage 하지 않은 README 는 자동으로 stage 하지 않는다.
+dirty=""
+for f in README.md README.ko.md; do
+  if [ -f "$f" ] && ! git diff --quiet -- "$f"; then
+    dirty="$dirty $f"
+  fi
+done
+
+python3 -I scripts/update_docs.py || exit 1
+
+for f in README.md README.ko.md; do
+  [ -f "$f" ] || continue
+  # Only re-stage files git already tracks. 새 파일은 사용자가 직접 add 한다.
+  git ls-files --error-unmatch -- "$f" >/dev/null 2>&1 || continue
+  case " $dirty " in
+    *" $f "*) echo "pre-commit: $f has unstaged edits. Review and stage it yourself." ;;
+    *) git add -- "$f" ;;
+  esac
+done
+
+if ! python3 -I scripts/update_docs.py --check; then
+  echo "pre-commit: docs check failed. Fix the problems above, or skip once with git commit --no-verify." >&2
+  exit 1
+fi
+
+# Remind about hand-written README prose when design or implementation changes.
+# 설계나 구현이 바뀌면 README 서술 부분을 확인하라고 알린다.
+staged=$(git diff --cached --name-only)
+if echo "$staged" | grep -qE '^(DESIGN\.md|CLAUDE\.md|\.claude/skills/|scripts/|templates/|\.githooks/|\.github/)'; then
+  if ! echo "$staged" | grep -qE '^README(\.ko)?\.md$'; then
+    echo "pre-commit: design or implementation files changed, but README prose did not. Check README.md and README.ko.md."
+  fi
+fi
+exit 0

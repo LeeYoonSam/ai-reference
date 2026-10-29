@@ -1,0 +1,19 @@
+# README 의 AUTO 블록, 번역 구조, 라이브러리 정합성을 검사한다.
+# Checks README AUTO blocks, translation parity, and library integrity.
+name: docs-check
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Check docs
+        run: python3 scripts/update_docs.py --check

@@ -2,7 +2,8 @@
 # requires-python = ">=3.11"
 # dependencies = ["beautifulsoup4>=4.12", "markdownify>=0.13"]
 # ///
-"""Aside 원본 HTML 을 요약 노트 초안(markdown)과 이미지 파일로 바꾼다.
+"""Convert an original Aside HTML file into a draft note (markdown) and image files.
+Aside 원본 HTML 을 요약 노트 초안(markdown)과 이미지 파일로 바꾼다.
 
 사용법:
     uv run scripts/html2md.py <원본 HTML> <출력 md> <이미지 폴더>
