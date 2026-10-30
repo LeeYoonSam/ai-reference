@@ -19,7 +19,7 @@ Claude 는 이 파일을 가장 먼저 읽는다. 카드마다 1줄이다. 형�
 
 ## 컨텍스트, skill, 작업 이어 가기
 
-- [작업 정리 문서와 다음 프롬프트로 세션을 이어 간다](cards/context/end-of-day-handoff-doc.md): 하루 작업을 끝낼 때 Claude 에게 논의 내용을 문서로 정리하게 한다. 다음 세션 첫 프롬프트까지 쓰게 하고 다음 날 그것으로 재개한다. 상위 세션이 cards/context/ 로 옮겨야 한다. · pattern · context, delegation · review_by 2027-01-29
+- [작업 정리 문서와 다음 프롬프트로 세션을 이어 간다](cards/context/end-of-day-handoff-doc.md): 하루 작업을 끝낼 때 Claude 에게 논의 내용을 문서로 정리하게 한다. 다음 세션 첫 프롬프트까지 쓰게 하고 다음 날 그것으로 재개한다. · pattern · context, delegation · review_by 2027-01-29
 - [내가 준 피드백을 모아 규칙 목록으로 바꾸고 리뷰 입력으로 쓴다](cards/context/feedback-to-rules.md): Claude 가 사용자의 피드백을 모은다. 그다음 Claude 가 피드백을 규칙과 숨은 원칙 목록으로 줄인다. 사용자는 그 목록을 이후 리뷰의 입력 자료로 쓴다. · pattern · context, feedback, review · review_by 2027-10-29
 - [골라 준 요약 대신 원본 데이터와 컴퓨터를 열어 준다](cards/context/open-raw-data-and-computer.md): 사용자는 요약 대신 원본 데이터, 직접 쓸 컴퓨터, 데이터를 가져오는 도구를 준다. 사용자는 각 도구가 가져오는 데이터를 설명한다. · principle · context, raw-data, tools · review_by 2027-10-29
 - [스킬은 금방 낡는다. 스킬 없는 기본 프롬프트와 비교한다](cards/context/skill-half-life-try-plain-prompt.md): 사용자는 스킬을 쓴 결과와 기본 프롬프트 결과를 함께 만든다. Claude 는 두 결과의 차이 목록만 만든다. 어느 쪽이 나은지는 사용자가 판단한다. · principle · context, skills, model-upgrade · review_by 2027-01-29
@@ -30,3 +30,14 @@ Claude 는 이 파일을 가장 먼저 읽는다. 카드마다 1줄이다. 형�
 - [설문 폼을 공감하고 이어 묻는 대화로 바꾼다](cards/hr-automation/conversational-survey.md): 폼 설문 대신 AI 가 질문하고 공감하며 이어 묻는다. 대화가 끝나면 리포트로 요약한다. 원티드 온보딩 피드백 챗봇 사례에서 답이 길고 솔직해졌다. · case · hr-automation, survey · review_by 2027-10-29
 - [AI 가 전 건을 판정하고 사람은 확인 필요 건만 본다](cards/hr-automation/exception-based-review.md): AI 가 증빙을 전 건 대조해 자동 확정과 확인 필요로 나누고 사유와 재확인 메시지 초안을 붙인다. 사람은 확인 필요 건만 본다. 원티드 성장지원비 사례에서 수동 검토가 8건으로 줄었다. · case · hr-automation, verification, review · review_by 2027-10-29
 - [원천 파일을 올리면 계산과 브리핑을 한 번에 받는다](cards/hr-automation/upload-then-briefing.md): 도구가 원천 파일로 지표를 계산하고 AI 가 전월 대비 변화를 브리핑한다. 사람의 관심은 수식 검증에서 조직 관리 해석으로 옮겨 간다. 원티드 근태 대시보드 사례에서 2~3시간이 1~2분으로 줄었다. · case · hr-automation, reporting · review_by 2027-10-29
+
+## 답변 포맷
+
+- [결론을 첫 문장에 쓴다](cards/format/lead-with-outcome.md): Claude 는 첫 문장에 "무엇이 일어났나" 또는 "무엇을 찾았나" 의 답을 쓴다. 근거와 과정은 그 뒤에 쓴다. Anthropic 문서, NN/g, GOV.UK, BLUF 가 같은 규칙을 둔다. · principle · format, structure, readability · review_by 2027-10-30
+- [가독성이 간결함보다 앞선다. 짧게 쓰는 방법은 내용 선택이다](cards/format/readability-over-brevity.md): Claude 는 짧게 쓸 때 내용을 고른다. 문장을 조각, 화살표, 약어로 압축하지 않는다. 최종 보고는 작업을 보지 않은 독자를 위해 완전한 문장으로 다시 쓴다. · principle · format, readability, length · review_by 2027-10-30
+- [목록은 내용이 다면적일 때만 쓴다. 관계와 논증은 산문으로 쓴다](cards/format/lists-only-when-multifaceted.md): 병렬 항목과 절차는 목록으로 쓴다. 비교와 이유는 산문으로 쓴다. 목록은 2개 이상 7개 이하 항목이다. 감정적 대화와 거절에서는 포맷을 쓰지 않는다. · principle · format, lists, markdown · review_by 2027-10-30
+- [마크다운은 렌더링되는 채널에서만 쓴다](cards/format/markdown-only-when-rendered.md): 채팅 UI 는 마크다운을 쓴다. 터미널, 음성, SNS 답글, API 본문은 평문으로 쓴다. 사용자는 프롬프트에 채널을 밝힌다. · principle · format, markdown, channel · review_by 2027-10-30
+- [포맷 지시는 금지형이 아니라 원하는 형태로 쓴다](cards/format/positive-format-instructions.md): 사용자는 "마크다운 금지" 대신 "산문 단락으로" 처럼 원하는 모습을 쓴다. 예시 1개에 요청, 올바른 응답, 이유 1문장을 넣는다. · pattern · format, prompt, instruction · review_by 2027-10-30
+- [포맷 규칙을 더하기 전에 모델의 기본값을 먼저 확인한다](cards/format/check-model-default-before-format-rules.md): 장황함과 포맷 기본값은 모델 세대마다 반대로 움직인다. 사용자는 규칙 없는 출력을 먼저 보고 기본값에서 벗어나게 하는 규칙만 쓴다. 모델을 바꾸면 포맷 규칙을 다시 검사한다. · pattern · format, model-upgrade, verbosity · review_by 2027-01-30
+- [포맷 규칙은 적을수록 지켜진다. 기본값에서 벗어나게 하는 규칙만 남긴다](cards/format/fewer-format-rules.md): 제약이 5개로 늘면 동시 준수율은 50~62% 로 떨어진다. 사용자는 모델이 이미 하는 것을 규칙으로 쓰지 않는다. 금지 대신 기준을 준다. · principle · format, instruction, context · review_by 2027-10-30
+- [에이전트 작업 보고는 결과 1~2문장으로 시작하고 요약을 반복하지 않는다](cards/format/agent-report-outcome-first.md): 도구 작업 뒤 "완료" 만 쓰는 것은 답이 아니다. 첫 문장에 결과를 쓴다. 메타 서술과 끝 요약을 뺀다. 오류와 테스트 실패는 전체를 쓴다. · pattern · format, agent, report · review_by 2027-10-30
