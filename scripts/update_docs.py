@@ -66,6 +66,7 @@ CATEGORY = {
     "verification": ("Verification and review", "검증과 리뷰"),
     "context": ("Context, skills, handoff", "컨텍스트, skill, 작업 이어 가기"),
     "hr-automation": ("HR automation cases", "HR 업무 자동화 사례"),
+    "format": ("Answer format", "답변 포맷"),
 }
 
 T = {

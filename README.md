@@ -7,7 +7,7 @@ This repository is a personal library of methods for delegating work to Claude a
 <!-- AUTO:stats -->
 | Sources | Cards | Skills | Last ingest |
 |---|---|---|---|
-| 2 | 17 (Delegation 5, Verification and review 4, Context, skills, handoff 4, HR automation cases 4) | 2 | 2026-10-29 |
+| 2 | 25 (Delegation 5, Verification and review 4, Context, skills, handoff 4, HR automation cases 4, Answer format 8) | 2 | 2026-10-29 |
 <!-- /AUTO:stats -->
 
 ## Why this project exists
@@ -383,6 +383,19 @@ This section is generated. It always matches the repository.
 | [설문 폼을 공감하고 이어 묻는 대화로 바꾼다](cards/hr-automation/conversational-survey.md) | case | medium | 2027-10-29 |
 | [AI 가 전 건을 판정하고 사람은 확인 필요 건만 본다](cards/hr-automation/exception-based-review.md) | case | medium | 2027-10-29 |
 | [원천 파일을 올리면 계산과 브리핑을 한 번에 받는다](cards/hr-automation/upload-then-briefing.md) | case | medium | 2027-10-29 |
+
+**Answer format**
+
+| Title | Type | Half-life | Review by |
+|---|---|---|---|
+| [에이전트 작업 보고는 결과 1~2문장으로 시작하고 요약을 반복하지 않는다](cards/format/agent-report-outcome-first.md) | pattern | medium | 2027-10-30 |
+| [포맷 규칙을 더하기 전에 모델의 기본값을 먼저 확인한다](cards/format/check-model-default-before-format-rules.md) | pattern | short | 2027-01-30 |
+| [포맷 규칙은 적을수록 지켜진다. 기본값에서 벗어나게 하는 규칙만 남긴다](cards/format/fewer-format-rules.md) | principle | long | 2027-10-30 |
+| [결론을 첫 문장에 쓴다](cards/format/lead-with-outcome.md) | principle | long | 2027-10-30 |
+| [목록은 내용이 다면적일 때만 쓴다. 관계와 논증은 산문으로 쓴다](cards/format/lists-only-when-multifaceted.md) | principle | medium | 2027-10-30 |
+| [마크다운은 렌더링되는 채널에서만 쓴다](cards/format/markdown-only-when-rendered.md) | principle | long | 2027-10-30 |
+| [포맷 지시는 금지형이 아니라 원하는 형태로 쓴다](cards/format/positive-format-instructions.md) | pattern | long | 2027-10-30 |
+| [가독성이 간결함보다 앞선다. 짧게 쓰는 방법은 내용 선택이다](cards/format/readability-over-brevity.md) | principle | medium | 2027-10-30 |
 <!-- /AUTO:cards -->
 
 ### Skills
